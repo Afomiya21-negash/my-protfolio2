@@ -8,6 +8,22 @@ if ($row['total'] == 0) {
     header("Location: default.html"); // Redirect to default static page
     exit;
 }
+$result = $db->conn->query("SELECT COUNT(*) AS total FROM experience");
+$row = $result->fetch_assoc();
+
+// If no content exists, show the default static page
+if ($row['total'] == 0) {
+    header("Location: default.html"); // Redirect to default static page
+    exit;
+}
+$result = $db->conn->query("SELECT COUNT(*) AS total FROM projects");
+$row = $result->fetch_assoc();
+
+// If no content exists, show the default static page
+if ($row['total'] == 0) {
+    header("Location: default.html"); // Redirect to default static page
+    exit;
+}
 
 // Load static content from default.html
 $defaultContent = file_get_contents('default.html');
@@ -83,7 +99,7 @@ $defaultSections = [
             <?php
     $aboutContent = $db->manageAbout('read');
     if ($aboutContent->num_rows > 0) {
-        while ($row = $aboutContent->fetch_assoc()) {
+        while ($row= $aboutContent->fetch_assoc()) {
             if (!empty($row['picture'])) {
                 echo "<img src='" . htmlspecialchars($row['picture']) . "' alt='About Picture'>";
             }
@@ -168,7 +184,7 @@ $defaultSections = [
     ?>
     </div>
    
-    <!-- <?php
+     <!-- <?php
     $experienceContent = $db->manageExperience('read');
     if ($experienceContent->num_rows > 0):
         while ($row = $experienceContent->fetch_assoc()):
@@ -188,23 +204,23 @@ $defaultSections = [
         <div class="project-photo">
             <img src="mind.avif">  
             <div class="ptoject-para"><h4>Mindful Moments</h4><p>Will provide the website link soon.</p></div>
-        </div>
-    </div>
-    <?php
+            <?php
     $projectContent = $db->manageProject('read');
     if ($projectContent->num_rows > 0) {
         while ($row = $projectContent->fetch_assoc()) {
-            echo "<div>";
             echo "<h3>" . htmlspecialchars($row['title']) . "</h3>";
             echo "<a href='" . htmlspecialchars($row['url_link']) . "' target='_blank'>View Project</a>";
             if (!empty($row['picture'])) {
                 echo "<img src='" . htmlspecialchars($row['picture']) . "' alt='Project Picture'>";
             }
-            echo "</div>";
         }
     }
     ?>
-    <!-- <?php
+        </div>
+        
+    </div>
+   
+     <!-- <?php
     $projectContent = $db->manageProject('read');
     if ($projectContent->num_rows > 0):
         while ($row = $projectContent->fetch_assoc()):
