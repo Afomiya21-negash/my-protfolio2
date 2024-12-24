@@ -7,7 +7,7 @@ if (isset($_POST['add_about'])) {
     $description = $_POST['description'];
     $picture = '';
 
-    // Handle Image Upload
+    //  Image Upload
     if (!empty($_FILES['picture']['name'])) {
         $uploadDir = "uploads/";
         if (!is_dir($uploadDir)) {
@@ -29,7 +29,7 @@ if (isset($_POST['update_about'])) {
     $description = $_POST['description'];
     $picture = $_POST['existing_picture'];
 
-    // Handle Image Upload
+    // Image Upload
     if (!empty($_FILES['picture']['name'])) {
         $uploadDir = "uploads/";
         if (!is_dir($uploadDir)) {
@@ -52,6 +52,6 @@ if (isset($_GET['delete_about'])) {
     exit;
 }
 
-// Fetch About Content for Display
+// Fetch About Content 
 $aboutContent = $db->manageAbout('read');
 ?>

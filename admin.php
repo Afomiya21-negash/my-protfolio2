@@ -16,7 +16,7 @@ require_once 'project.php';
 <body>
     <h1>Admin Panel</h1>
   
-    <!-- About Section Management -->
+    <!-- About Section -->
     <section>
         <h2>Manage About Section</h2>
         <a href="edit_content.php?section=about">update the static content </a>
@@ -62,7 +62,7 @@ require_once 'project.php';
         </table>
     </section>
 
-    <!-- Experience Section Management -->
+    <!-- Experience Section -->
     <section>
         <h2>Manage Experience Section</h2>
         <a href="edit_content.php?section=experience">update the static content </a>
@@ -98,7 +98,7 @@ require_once 'project.php';
         </table>
     </section>
 
-    <!-- Projects Section Management -->
+    <!-- Projects Section -->
     <section>
         <h2>Manage Projects Section</h2>
         <a href="edit_content.php?section=projects">update the static content </a>

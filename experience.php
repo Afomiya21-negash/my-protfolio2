@@ -30,6 +30,6 @@ if (isset($_GET['delete_experience'])) {
     exit;
 }
 
-// Fetch Experience Content for Display
+// Fetch Experience Content 
 $experienceContent = $db->manageExperience('read');
 ?>

@@ -11,7 +11,7 @@ if ($row['total'] == 0) {
 $result = $db->conn->query("SELECT COUNT(*) AS total FROM experience");
 $row = $result->fetch_assoc();
 
-// If no content exists, show the default static page
+
 if ($row['total'] == 0) {
     header("Location: default.html"); // Redirect to default static page
     exit;
@@ -19,7 +19,6 @@ if ($row['total'] == 0) {
 $result = $db->conn->query("SELECT COUNT(*) AS total FROM projects");
 $row = $result->fetch_assoc();
 
-// If no content exists, show the default static page
 if ($row['total'] == 0) {
     header("Location: default.html"); // Redirect to default static page
     exit;
@@ -74,7 +73,7 @@ $defaultSections = [
   </div>
   <div class="header-content">
     <h1>Hello, I'm <span style="color: #3b6d91;">A</span>fomiya Mesfin</h1>
-    <!-- <p>Web Developer</p> -->
+    <p>Web Designer</p>
     <div class="btn-container">  
         <button><a href="#contact">contact info</a></button>
       </div>
@@ -131,7 +130,7 @@ $defaultSections = [
 
     </div>
 
-    <!-- Append Dynamic Content -->
+    
    
     <!-- <?php
     $aboutContent = $db->manageAbout('read');

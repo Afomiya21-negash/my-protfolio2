@@ -18,12 +18,12 @@ if ($section === 'about') {
     $result = $db->manageProject('read');
 }
 
-// If no database content exists, load static content from default.html
+//  no database content exists, load static content from default.html
 $content = null;
 if (!$result || $result->num_rows === 0) {
     $defaultContent = file_get_contents('default.html');
     $dom = new DOMDocument();
-    libxml_use_internal_errors(true); // Suppress HTML warnings
+    libxml_use_internal_errors(true); //  HTML warnings
     $dom->loadHTML($defaultContent);
     libxml_clear_errors();
 
@@ -43,14 +43,14 @@ if (!$result || $result->num_rows === 0) {
     $content = $result->fetch_assoc();
 }
 
-// Handle form submission to update static or dynamic content
+//  form submission to update static or dynamic content
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $description = $_POST['description'] ?? null;
     $url_link = $_POST['url_link'] ?? null;
     $imageFileName = $content['image_url'] ?? null;
 
-    // Handle image upload
+    //  image upload
     if (!empty($_FILES['image']['name'])) {
         $uploadDir = "uploads/";
         if (!is_dir($uploadDir)) {
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Edit Section: <?= htmlspecialchars($section); ?></h2>
 
     <form action="edit_content.php?section=<?= htmlspecialchars($section); ?>" method="POST" enctype="multipart/form-data">
-        <!-- Title Field -->
+       
         <label for="title">Title:</label>
         <input type="text" name="title" id="title" value="<?= htmlspecialchars($content['title'] ?? ''); ?>" required>
 
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="description">Description:</label>
         <textarea name="description" id="description" required><?= htmlspecialchars($content['description'] ?? ''); ?></textarea>
 
-        <!-- URL Link Field (Only for Projects) -->
+        <!-- URL Link Field  -->
         <?php if ($section === 'projects'): ?>
             <label for="url_link">Project Link:</label>
             <input type="url" name="url_link" id="url_link" value="<?= htmlspecialchars($content['url_link'] ?? ''); ?>">

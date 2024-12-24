@@ -1,13 +1,13 @@
 <?php
 require_once 'connection/db.php';
 
-// Handle Adding New Content for About Section
+//  Adding New Content for About Section
 if (isset($_POST['add_about'])) {
     $title = $_POST['title'];
     $description = $_POST['description'];
     $picture = null;
 
-    // Handle Image Upload
+    //  Image Upload
     if (!empty($_FILES['picture']['name'])) {
         $uploadDir = "uploads/";
         if (!is_dir($uploadDir)) {
@@ -25,7 +25,7 @@ if (isset($_POST['add_about'])) {
     exit;
 }
 
-// Handle Adding New Content for Experience Section
+// Adding New Content for Experience Section
 if (isset($_POST['add_experience'])) {
     $title = $_POST['title'];
     $description = $_POST['description'];
@@ -37,13 +37,13 @@ if (isset($_POST['add_experience'])) {
     exit;
 }
 
-// Handle Adding New Content for Projects Section
+//  Adding New Content for Projects Section
 if (isset($_POST['add_project'])) {
     $title = $_POST['title'];
     $url_link = $_POST['url_link'];
     $picture = null;
 
-    // Handle Image Upload
+    // Image Upload
     if (!empty($_FILES['picture']['name'])) {
         $uploadDir = "uploads/";
         if (!is_dir($uploadDir)) {
