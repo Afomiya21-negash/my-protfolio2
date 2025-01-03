@@ -1,37 +1,34 @@
 <?php
 require_once 'connection/db.php';
-$result = $db->conn->query("SELECT COUNT(*) AS total FROM about");
-$row = $result->fetch_assoc();
-
-// If no content exists, show the default static page
-if ($row['total'] == 0) {
-    header("Location: default.html"); // Redirect to default static page
-    exit;
+$aboutResult = $db->conn->query("SELECT COUNT(*) AS total FROM about");
+$aboutRow = $aboutResult->fetch_assoc();
+if ($aboutRow['total'] == 0) {
+    $defaultContentNeeded['about'] = true;
 }
-$result = $db->conn->query("SELECT COUNT(*) AS total FROM experience");
-$row = $result->fetch_assoc();
 
-
-if ($row['total'] == 0) {
-    header("Location: default.html"); // Redirect to default static page
-    exit;
+// Check if experience table is empty
+$experienceResult = $db->conn->query("SELECT COUNT(*) AS total FROM experience");
+$experienceRow = $experienceResult->fetch_assoc();
+if ($experienceRow['total'] == 0) {
+    $defaultContentNeeded['experience'] = true;
 }
-$result = $db->conn->query("SELECT COUNT(*) AS total FROM projects");
-$row = $result->fetch_assoc();
 
-if ($row['total'] == 0) {
-    header("Location: default.html"); // Redirect to default static page
-    exit;
+// Check if projects table is empty
+$projectsResult = $db->conn->query("SELECT COUNT(*) AS total FROM projects");
+$projectsRow = $projectsResult->fetch_assoc();
+if ($projectsRow['total'] == 0) {
+    $defaultContentNeeded['projects'] = true;
 }
+
 
 // Load static content from default.html
 $defaultContent = file_get_contents('default.html');
 $dom = new DOMDocument();
-libxml_use_internal_errors(true); // Suppress HTML warnings
+libxml_use_internal_errors(true); //HTML warnings
 $dom->loadHTML($defaultContent);
 libxml_clear_errors();
 
-// Extract default sections from default.html
+// default.html
 $defaultSections = [
     'hero' => $dom->saveHTML($dom->getElementById('hero')),
     'about' => $dom->saveHTML($dom->getElementById('about')),
@@ -132,19 +129,7 @@ $defaultSections = [
 
     
    
-    <!-- <?php
-    $aboutContent = $db->manageAbout('read');
-    if ($aboutContent->num_rows > 0):
-        while ($row = $aboutContent->fetch_assoc()):
-    ?>
-        <h2><?= htmlspecialchars($row['title']); ?></h2>
-        <p><?= htmlspecialchars($row['description']); ?></p>
-        <?php if (!empty($row['picture'])): ?>
-            <img src="<?= htmlspecialchars($row['picture']); ?>" alt="About Picture">
-        <?php endif; ?>
-    <?php endwhile; else: ?>
-        <?= $defaultSections['about']; ?>
-    <?php endif; ?> -->
+   
 </section>
 
 <!-- Experience Section -->
@@ -183,16 +168,6 @@ $defaultSections = [
     ?>
     </div>
    
-     <!-- <?php
-    $experienceContent = $db->manageExperience('read');
-    if ($experienceContent->num_rows > 0):
-        while ($row = $experienceContent->fetch_assoc()):
-    ?>
-        <h2><?= htmlspecialchars($row['title']); ?></h2>
-        <p><?= htmlspecialchars($row['description']); ?></p>
-    <?php endwhile; else: ?>
-        <?= $defaultSections['experience']; ?>
-    <?php endif; ?> -->
 </section>
 
 <!-- Projects Section -->
@@ -219,19 +194,7 @@ $defaultSections = [
         
     </div>
    
-     <!-- <?php
-    $projectContent = $db->manageProject('read');
-    if ($projectContent->num_rows > 0):
-        while ($row = $projectContent->fetch_assoc()):
-    ?>
-        <h2><?= htmlspecialchars($row['title']); ?></h2>
-        <a href="<?= htmlspecialchars($row['url_link']); ?>" target="_blank">View Project</a>
-        <?php if (!empty($row['picture'])): ?>
-            <img src="<?= htmlspecialchars($row['picture']); ?>" alt="Project Picture">
-        <?php endif; ?>
-    <?php endwhile; else: ?>
-        <?= $defaultSections['projects']; ?>
-    <?php endif; ?> -->
+     
 </section>
 <section id="contact" class="contact-section">
     <h2>Contact Me</h2>

@@ -19,7 +19,7 @@ require_once 'project.php';
     <!-- About Section -->
     <section>
         <h2>Manage About Section</h2>
-        <a href="edit_content.php?section=about">update the static content </a>
+   
 
         <form action="add_content.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="">
@@ -65,7 +65,7 @@ require_once 'project.php';
     <!-- Experience Section -->
     <section>
         <h2>Manage Experience Section</h2>
-        <a href="edit_content.php?section=experience">update the static content </a>
+       
 
         <form action="add_content.php" method="POST">
             <input type="hidden" name="id" value="">
@@ -101,7 +101,7 @@ require_once 'project.php';
     <!-- Projects Section -->
     <section>
         <h2>Manage Projects Section</h2>
-        <a href="edit_content.php?section=projects">update the static content </a>
+        
 
         <form action="add_content.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="">
